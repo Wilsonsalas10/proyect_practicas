@@ -6,88 +6,88 @@ from mysql.connector.errors import Error
 # Importando cenexión a BD
 from controllers.funciones_home import *
 
-PATH_URL = "public/empleados"
+PATH_URL = "public/conductores"
 
 
-@app.route('/registrar-empleado', methods=['GET'])
-def viewFormEmpleado():
+@app.route('/registrar-conductor', methods=['GET'])
+def viewFormconductor():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/form_empleado.html')
+        return render_template(f'{PATH_URL}/form_conductor.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
 
 
-@app.route('/form-registrar-empleado', methods=['POST'])
-def formEmpleado():
+@app.route('/form-registrar-conductor', methods=['POST'])
+def formconductor():
     if 'conectado' in session:
-        if 'foto_empleado' in request.files:
-            foto_perfil = request.files['foto_empleado']
-            resultado = procesar_form_empleado(request.form, foto_perfil)
+        if 'foto_conductor' in request.files:
+            foto_perfil = request.files['foto_conductor']
+            resultado = procesar_form_conductor(request.form, foto_perfil)
             if resultado:
-                return redirect(url_for('lista_empleados'))
+                return redirect(url_for('lista_conductores'))
             else:
-                flash('El empleado NO fue registrado.', 'error')
-                return render_template(f'{PATH_URL}/form_empleado.html')
+                flash('El conductor NO fue registrado.', 'error')
+                return render_template(f'{PATH_URL}/form_conductor.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
 
 
-@app.route('/lista-de-empleados', methods=['GET'])
-def lista_empleados():
+@app.route('/lista-de-conductores', methods=['GET'])
+def lista_conductores():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/lista_empleados.html', empleados=sql_lista_empleadosBD())
+        return render_template(f'{PATH_URL}/lista_conductores.html', conductores=sql_lista_conductoresBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
 
 
-@app.route("/detalles-empleado/", methods=['GET'])
-@app.route("/detalles-empleado/<int:idEmpleado>", methods=['GET'])
-def detalleEmpleado(idEmpleado=None):
+@app.route("/detalles-conductor/", methods=['GET'])
+@app.route("/detalles-conductor/<int:idconductor>", methods=['GET'])
+def detalleconductor(idconductor=None):
     if 'conectado' in session:
-        # Verificamos si el parámetro idEmpleado es None o no está presente en la URL
-        if idEmpleado is None:
+        # Verificamos si el parámetro idconductor es None o no está presente en la URL
+        if idconductor is None:
             return redirect(url_for('inicio'))
         else:
-            detalle_empleado = sql_detalles_empleadosBD(idEmpleado) or []
-            return render_template(f'{PATH_URL}/detalles_empleado.html', detalle_empleado=detalle_empleado)
+            detalle_conductor = sql_detalles_conductoresBD(idconductor) or []
+            return render_template(f'{PATH_URL}/detalles_conductor.html', detalle_conductor=detalle_conductor)
     else:
         flash('Primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
 
 
-# Buscadon de empleados
-@app.route("/buscando-empleado", methods=['POST'])
-def viewBuscarEmpleadoBD():
-    resultadoBusqueda = buscarEmpleadoBD(request.json['busqueda'])
+# Buscadon de conductores
+@app.route("/buscando-conductor", methods=['POST'])
+def viewBuscarconductorBD():
+    resultadoBusqueda = buscarconductorBD(request.json['busqueda'])
     if resultadoBusqueda:
-        return render_template(f'{PATH_URL}/resultado_busqueda_empleado.html', dataBusqueda=resultadoBusqueda)
+        return render_template(f'{PATH_URL}/resultado_busqueda_conductor.html', dataBusqueda=resultadoBusqueda)
     else:
         return jsonify({'fin': 0})
 
 
-@app.route("/editar-empleado/<int:id>", methods=['GET'])
-def viewEditarEmpleado(id):
+@app.route("/editar-conductor/<int:id>", methods=['GET'])
+def viewEditarConductor(id):
     if 'conectado' in session:
-        respuestaEmpleado = buscarEmpleadoUnico(id)
-        if respuestaEmpleado:
-            return render_template(f'{PATH_URL}/form_empleado_update.html', respuestaEmpleado=respuestaEmpleado)
+        respuestaconductor = buscarconductorUnico(id)
+        if respuestaconductor:
+            return render_template(f'{PATH_URL}/form_conductor_update.html', respuestaconductor=respuestaconductor)
         else:
-            flash('El empleado no existe.', 'error')
+            flash('El conductor no existe.', 'error')
             return redirect(url_for('inicio'))
     else:
         flash('Primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
 
 
-# Recibir formulario para actulizar informacion de empleado
-@app.route('/actualizar-empleado', methods=['POST'])
-def actualizarEmpleado():
+# Recibir formulario para actulizar informacion de conductor
+@app.route('/actualizar-conductor', methods=['POST'])
+def actualizarconductor():
     resultData = procesar_actualizacion_form(request)
     if resultData:
-        return redirect(url_for('lista_empleados'))
+        return redirect(url_for('lista_conductores'))
 
 
 @app.route("/lista-de-usuarios", methods=['GET'])
@@ -107,15 +107,15 @@ def borrarUsuario(id):
         return redirect(url_for('usuarios'))
 
 
-@app.route('/borrar-empleado/<string:id_empleado>/<string:foto_empleado>', methods=['GET'])
-def borrarEmpleado(id_empleado, foto_empleado):
-    resp = eliminarEmpleado(id_empleado, foto_empleado)
+@app.route('/borrar-conductor/<string:id_conductor>/<string:foto_conductor>', methods=['GET'])
+def borrarconductor(id_conductor, foto_conductor):
+    resp = eliminarconductor(id_conductor, foto_conductor)
     if resp:
-        flash('El Empleado fue eliminado correctamente', 'success')
-        return redirect(url_for('lista_empleados'))
+        flash('El conductor fue eliminado correctamente', 'success')
+        return redirect(url_for('lista_conductores'))
 
 
-@app.route("/descargar-informe-empleados/", methods=['GET'])
+@app.route("/descargar-informe-conductores/", methods=['GET'])
 def reporteBD():
     if 'conectado' in session:
         return generarReporteExcel()

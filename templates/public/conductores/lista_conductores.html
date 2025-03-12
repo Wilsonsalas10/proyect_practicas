@@ -1,13 +1,13 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %} EL BENDITO STORE🐍 | Lista de Empleados{% endblock %}
+{% block title %} EL BENDITO STORE🐍 | Lista de conductores{% endblock %}
 <!--Inicio del block-->
 {% block body %}
 
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
     <div class="col-md-12 mb-4">
-      <h3 class="text-center mt-5 mb-3">LISTA DE EMPLEADOS</h3>
+      <h3 class="text-center mt-5 mb-3">LISTA DE CONDUCTORES</h3>
       <hr />
     </div>
 
@@ -17,8 +17,8 @@
           type="search"
           id="search"
           class="form-control border-0 shadow-none"
-          placeholder="Buscar empleado..."
-          onkeyup="buscadorTable('tbl_empleados')" />
+          placeholder="Buscar conductor..."
+          onkeyup="buscadorTable('tbl_conductores')" />
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <div class="table-responsive text-nowrap table-hover">
         <table
           table-hover
-          id="tbl_empleados"
+          id="tbl_conductores"
           class="table table-striped table-bordered"
           cellspacing="0"
           width="100%">
@@ -41,19 +41,19 @@
             </tr>
           </thead>
           <tbody>
-            {% for empleado in empleados %}
-            <tr id="empleado_{{ empleado.id_empleado }}">
+            {% for conductor in conductores %}
+            <tr id="conductor_{{ conductor.id_conductor }}">
               <td>{{ loop.index }}</td>
-              <td>{{ empleado.nombre_empleado }}</td>
-              <td>{{ empleado.apellido_empleado }}</td>
-              <td>{{ empleado.sexo_empleado }}</td>
+              <td>{{ conductor.nombre_conductor }}</td>
+              <td>{{ conductor.apellido_conductor }}</td>
+              <td>{{ conductor.sexo_conductor }}</td>
               <td>
-                $ {{ '{:,.0f}'.format(empleado.salario_empleado).replace(',',
+                $ {{ '{:,.0f}'.format(conductor.salario_conductor).replace(',',
                 '.')}}
               </td>
               <td width="10px">
                 <a
-                  href="/detalles-empleado/{{ empleado.id_empleado }}"
+                  href="/detalles-conductor/{{ conductor.id_conductor }}"
                   title="Ver envio"
                   type="button"
                   class="btn btn-info btn-sm"
@@ -66,7 +66,7 @@
                   Ver detalles
                 </a>
                 <a
-                  href="{{ url_for('viewEditarEmpleado', id = empleado.id_empleado) }}"
+                  href="{{ url_for('viewEditarConductor', id = conductor.id_conductor) }}"
                   class="btn btn-success btn-sm"
                   tooltip="Actualizar Registro">
                   <i class="bi bi-arrow-clockwise"></i>
@@ -74,13 +74,14 @@
                 </a>
                 <a
                   href="#"
-                  onclick="eliminarEmpleado('{{ empleado.id_empleado }}','{{ empleado.foto_empleado }}');"
+                  
+                  onclick="return confirm('¿Estás seguro de eliminar al empleado {{ conductor.nombre_conductor }}?');"
                   class="btn btn-danger btn-sm"
                   data-bs-toggle="tooltip"
                   data-bs-offset="0,4"
                   data-bs-placement="top"
                   data-bs-html="true"
-                  title="<span>Eliminar empleado {{ empleado.nombre_empleado }}</span>">
+                  title="<span>Eliminar conductor {{ conductor.nombre_conductor }}</span>">
                   <i class="bi bi-trash3"></i>
                   Eliminar
                 </a>

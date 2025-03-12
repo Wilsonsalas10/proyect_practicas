@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %} EL BENDITO STORE🐍  | Registrar Nuevo Empleado{% endblock %}
+{% block title %} EL BENDITO STORE🐍  | Registrar Nuevo Conductor{% endblock %}
 <!---->
 {% block customCSS %}
 <link
@@ -11,14 +11,14 @@
 <!--Inicio del block-->
 {% block body %}
 <div class="card" style="border-radius: 0px !important">
-  {% if respuestaEmpleado|length %}
+  {% if respuestaconductor|length %}
   <div class="row justify-content-center mb-2">
     <div class="col-md-12">
       <h3 class="text-center mt-5 mb-3">
-        <a href="/lista-de-empleados">
+        <a href="/lista-de-conductores">
           <i class="bi bi-arrow-left-circle"></i>
         </a>
-        ACTUALIZAR DATOS DEL EMPLEADOS
+        ACTUALIZAR DATOS DEL CONDUCTOR
       </h3>
       <hr />
     </div>
@@ -29,52 +29,52 @@
       <form
         class="form-horizontal mx-auto"
         method="POST"
-        action="{{ url_for('actualizarEmpleado', id = respuestaEmpleado.id_empleado ) }}"
+        action="{{ url_for('actualizarconductor', id = respuestaconductor.id_conductor ) }}"
         autocomplete="off"
         enctype="multipart/form-data">
         <input
           type="text"
           class="form-control"
-          name="id_empleado"
-          value="{{ respuestaEmpleado.id_empleado }}"
+          name="id_conductor"
+          value="{{ respuestaconductor.id_conductor }}"
           required
           hidden />
 
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <label for="nombre_empleado" class="form-label">
-                Nombre del empleado
+              <label for="nombre_conductor" class="form-label">
+                Nombre del conductor
               </label>
               <input
                 type="text"
-                name="nombre_empleado"
-                value="{{ respuestaEmpleado.nombre_empleado }}"
+                name="nombre_conductor"
+                value="{{ respuestaconductor.nombre_conductor }}"
                 class="form-control"
                 required />
             </div>
             <div class="col-md-6">
-              <label for="apellido_empleado" class="form-label">
-                Apellido del empleado
+              <label for="apellido_conductor" class="form-label">
+                Apellido del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="apellido_empleado"
-                value="{{ respuestaEmpleado.apellido_empleado }}"
+                name="apellido_conductor"
+                value="{{ respuestaconductor.apellido_conductor }}"
                 required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="sexo_empleado" class="form-label">
-                Sexo del empleado
+              <label for="sexo_conductor" class="form-label">
+                Sexo del conductor
               </label>
               {% with tipo_sexo = {"1": "Masculino", "2": "Femenino"} %}
-              <select class="form-select" name="sexo_empleado">
+              <select class="form-select" name="sexo_conductor">
                 {% for clave, valor in tipo_sexo.items() %} {% if clave ==
-                respuestaEmpleado.sexo_empleado|string %}
+                respuestaconductor.sexo_conductor|string %}
                 <option value="{{ clave }}" selected>{{ valor }}</option>
                 {% else %}
                 <option value="{{ clave }}">{{ valor }}</option>
@@ -84,76 +84,76 @@
             </div>
 
             <div class="col-md-6">
-              <label for="telefono_empleado" class="form-label">
-                Telefono del empleado
+              <label for="telefono_conductor" class="form-label">
+                Telefono del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="telefono_empleado"
-                value="{{ respuestaEmpleado.telefono_empleado }}"
+                name="telefono_conductor"
+                value="{{ respuestaconductor.telefono_conductor }}"
                 required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="email_empleado" class="form-label">
-                Email del empleado
+              <label for="email_conductor" class="form-label">
+                Email del conductor
               </label>
               <input
                 class="form-control"
                 type="email"
-                name="email_empleado"
-                value="{{ respuestaEmpleado.email_empleado }}"
+                name="email_conductor"
+                value="{{ respuestaconductor.email_conductor }}"
                 required />
             </div>
             <div class="col-md-6">
-              <label for="profesion_empleado" class="form-label">
-                Profesión del empleado
+              <label for="profesion_conductor" class="form-label">
+                Profesión 
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="profesion_empleado"
-                value="{{ respuestaEmpleado.profesion_empleado }}"
+                name="profesion_conductor"
+                value="{{ respuestaconductor.profesion_conductor }}"
                 required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="salario_empleado" class="form-label">
-                Salario del empleado
+              <label for="salario_conductor" class="form-label">
+                Salario del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="salario_empleado"
-                value="{{ respuestaEmpleado.salario_empleado }}"
-                id="salario_empleado"
+                name="salario_conductor"
+                value="{{ respuestaconductor.salario_conductor }}"
+                id="salario_conductor"
                 required />
             </div>
             <div class="col-md-6">
-              <label for="" class="form-label"> FOTO DEL EMPLEADO </label>
+              <label for="" class="form-label"> FOTO DEL CONDUCTOR </label>
               <br />
               <img
-                src="/static/fotos_empleados/{{ respuestaEmpleado.foto_empleado }}"
+                src="/static/fotos_conductores/{{ respuestaconductor.foto_conductor }}"
                 style="width: 150px"
-                alt="{{ respuestaEmpleado.nombre_empleado }}" />
+                alt="{{ respuestaconductor.nombre_conductor }}" />
             </div>
           </div>
 
           <div class="row">
             <div class="col-md-6">
               <label for="" class="form-label">
-                ACTUALIZAR LA FOTO DEL EMPLEADO
+                ACTUALIZAR LA FOTO DEL CONDUCTOR
               </label>
               <div class="avatar-upload">
                 <div class="avatar-edit">
                   <input
                     type="file"
-                    name="foto_empleado"
+                    name="foto_conductor"
                     id="imageUpload"
                     accept=".png, .jpg, .jpeg" />
                   <label for="imageUpload"><i class="bi bi-pen"></i></label>
@@ -182,7 +182,7 @@
   {% else %}
   <div class="row justify-content-center mb-2">
     <div class="col-md-12">
-      <h3 class="text-center">No existe el empleado</h3>
+      <h3 class="text-center">No existe el conductor</h3>
     </div>
   </div>
 

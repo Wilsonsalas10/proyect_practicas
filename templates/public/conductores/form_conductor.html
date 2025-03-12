@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %} EL BENDITO STORE🐍  | Registrar Empleado{% endblock %}
+{% block title %} EL BENDITO STORE🐍  | Registrar Conductor{% endblock %}
 <!---->
 {% block customCSS %}
 <link
@@ -13,7 +13,7 @@
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
     <div class="col-md-12">
-      <h3 class="text-center mt-5 mb-3">REGISTRAR NUEVO EMPLEADO</h3>
+      <h3 class="text-center mt-5 mb-3">REGISTRAR NUEVO CONDUCTOR</h3>
       <hr />
     </div>
   </div>
@@ -23,41 +23,41 @@
       <form
         class="form-horizontal mx-auto"
         method="POST"
-        action="/form-registrar-empleado"
+        action="/form-registrar-conductor"
         autocomplete="off"
         enctype="multipart/form-data">
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <label for="nombre_empleado" class="form-label">
-                Nombre del empleado
+              <label for="nombre_conductor" class="form-label">
+                Nombre del conductor
               </label>
               <input
                 type="text"
-                name="nombre_empleado"
+                name="nombre_conductor"
                 class="form-control"
                 required />
             </div>
             <div class="col-md-6">
-              <label for="apellido_empleado" class="form-label">
-                Apellido del empleado
+              <label for="apellido_conductor" class="form-label">
+                Apellido del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="apellido_empleado"
+                name="apellido_conductor"
                 required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="sexo_empleado" class="form-label">
-                Sexo del empleado
+              <label for="sexo_conductor" class="form-label">
+                Sexo del conductor
               </label>
               <select
                 class="form-select"
-                name="sexo_empleado"
+                name="sexo_conductor"
                 aria-label="Default select example">
                 <option selected>Seleccione</option>
                 <option value="1">Masculino</option>
@@ -65,61 +65,62 @@
               </select>
             </div>
             <div class="col-md-6">
-              <label for="telefono_empleado" class="form-label">
-                Telefono del empleado
+              <label for="telefono_conductor" class="form-label">
+                Telefono del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="telefono_empleado"
+                name="telefono_conductor"
                 required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="email_empleado" class="form-label">
-                Email del empleado
+              <label for="email_conductor" class="form-label">
+                Email del conductor
               </label>
               <input
                 class="form-control"
                 type="email"
-                name="email_empleado"
+                name="email_conductor"
                 required />
             </div>
             <div class="col-md-6">
-              <label for="profesion_empleado" class="form-label">
-                Profesión del empleado
+              <label for="profesion_conductor" class="form-label">
+                Profesión del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="profesion_empleado"
+                name="profesion_conductor"
                 required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="salario_empleado" class="form-label">
-                Salario del empleado
+              <label for="salario_conductor" class="form-label">
+                Salario del conductor
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="salario_empleado"
-                id="salario_empleado"
+                name="salario_conductor"
+                id="salario_conductor"
                 required />
             </div>
+          
             <div class="col-md-6">
               <label for="" class="form-label">
-                CARGAR IMAGEN DEL EMPLEADO
+                CARGAR IMAGEN DEL CONDUCTOR
               </label>
               <div class="avatar-upload">
                 <div class="avatar-edit">
                   <input
                     type="file"
-                    name="foto_empleado"
+                    name="foto_conductor"
                     id="imageUpload"
                     accept=".png, .jpg, .jpeg" />
                   <label for="imageUpload"><i class="bi bi-pen"></i></label>

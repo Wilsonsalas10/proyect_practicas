@@ -18,7 +18,7 @@ $("#imageUpload").change(function () {
 /**
  * Formatear cantidad en salario
  */
-let salario = document.querySelector("#salario_empleado");
+let salario = document.querySelector("#salario_conductor");
 if (salario) {
   salario.addEventListener("input", (inputClick) => {
     let cantidad = inputClick.target.value.replace(/\D/g, ""); // Eliminar caracteres no numéricos
