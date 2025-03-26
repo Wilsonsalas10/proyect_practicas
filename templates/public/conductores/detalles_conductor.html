@@ -1,0 +1,110 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %} BD FLOTA 🚚 | Registrar conductor{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!--Inicio del block-->
+{% block body %}
+<!---->
+{% if (detalle_conductor|length) %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">
+        <a href="/lista-de-conductores">
+          <i class="bi bi-arrow-left-circle"></i>
+        </a>
+        INFORMACIÓN DEL CONDUCTOR
+      </h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre_conductor" class="form-label">
+              Nombre del conductor
+            </label>
+            <br />
+            {{ detalle_conductor.nombre_conductor}}
+          </div>
+          <div class="col-md-6">
+            <label for="apellido_conductor" class="form-label">
+              Apellido del conductor
+            </label>
+            <br />
+            {{ detalle_conductor.apellido_conductor}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="sexo_conductor" class="form-label">
+              Sexo del conductor
+            </label>
+            <br />
+            {{ detalle_conductor.sexo_conductor}}
+          </div>
+          <div class="col-md-6">
+            <label for="telefono_conductor" class="form-label">
+              Telefono del conductor
+            </label>
+            <br />
+            {{ detalle_conductor.telefono_conductor}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="email_conductor" class="form-label">
+              Email del conductor
+            </label>
+            <br />
+            {{ detalle_conductor.email_conductor}}
+          </div>
+          <div class="col-md-6">
+            <label for="profesion_conductor" class="form-label">
+              Profesión del conductor
+            </label>
+            <br />
+            {{ detalle_conductor.profesion_conductor}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="salario_conductor" class="form-label">
+              Salario del conductor
+            </label>
+            <br />
+            $ {{
+            '{:,.0f}'.format(detalle_conductor.salario_conductor).replace(',',
+            '.')}}
+          </div>
+          <div class="col-md-6">
+            <label for="" class="form-label"> IMAGEN DEL CONDUCTOR </label>
+            <br />
+            <img
+              style="width: 200px"
+              src="/static/fotos_conductores/{{ detalle_conductor.foto_conductor }}"
+              alt="imagen-conductor" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<h2 class="text-center">
+  No existe el conductor 😭
+  <hr />
+</h2>
+{% endif %} {% endblock %}

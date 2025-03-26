@@ -1,0 +1,154 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %} BD FLOTA   | Registrar Conductor{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!--Inicio del block-->
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">DATOS CONDUCTORES</h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <form
+        class="form-horizontal mx-auto"
+        method="POST"
+        action="/form-registrar-conductor"
+        autocomplete="off"
+        enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="nombre_conductor" class="form-label">
+                Nombre del conductor
+              </label>
+              <input
+                type="text"
+                name="nombre_conductor"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="apellido_conductor" class="form-label">
+                Apellido del conductor
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="apellido_conductor"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="sexo_conductor" class="form-label">
+                Sexo del conductor
+              </label>
+              <select
+                class="form-select"
+                name="sexo_conductor"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="telefono_conductor" class="form-label">
+                Telefono del conductor
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="telefono_conductor"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="email_conductor" class="form-label">
+                Email del conductor
+              </label>
+              <input
+                class="form-control"
+                type="email"
+                name="email_conductor"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="profesion_conductor" class="form-label">
+                Profesión del conductor
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="profesion_conductor"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="salario_conductor" class="form-label">
+                Salario del conductor
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="salario_conductor"
+                id="salario_conductor"
+                required />
+            </div>
+          
+            <div class="col-md-6">
+              <label for="" class="form-label">
+                CARGAR IMAGEN DEL CONDUCTOR
+              </label>
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input
+                    type="file"
+                    name="foto_conductor"
+                    id="imageUpload"
+                    accept=".png, .jpg, .jpeg" />
+                  <label for="imageUpload"><i class="bi bi-pen"></i></label>
+                </div>
+                <div class="avatar-preview">
+                  <div class="avatar-preview">
+                    {% set url_avatar= url_for('static', filename
+                    ='assets/img/avatar.png') %}
+                    <div
+                      id="imagePreview"
+                      style="background-image: url('{{ url_avatar }}')"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3 mt-4 text-center">
+            <button type="submit" class="btn rounded-pill btn-secondary">
+              Guardar registro ahora
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %} 
