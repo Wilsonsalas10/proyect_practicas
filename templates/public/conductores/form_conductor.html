@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %} BD FLOTA   | Registrar Conductor{% endblock %}
+{% block title %} BD FLOTA | Registrar Conductor{% endblock %}
 <!---->
 {% block customCSS %}
 <link
@@ -13,7 +13,7 @@
 <div class="card" style="border-radius: 0px !important">
   <div class="row justify-content-center mb-2">
     <div class="col-md-12">
-      <h3 class="text-center mt-5 mb-3">DATOS CONDUCTORES</h3>
+      <h3 class="text-center mt-5 mb-3">NUEVO CONDUCTOR</h3>
       <hr />
     </div>
   </div>
@@ -29,110 +29,78 @@
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <label for="nombre_conductor" class="form-label">
-                Nombre del conductor
-              </label>
-              <input
-                type="text"
-                name="nombre_conductor"
-                class="form-control"
-                required />
+              <label for="nombres" class="form-label">Nombres</label>
+              <input type="text" name="nombres" class="form-control" required />
             </div>
             <div class="col-md-6">
-              <label for="apellido_conductor" class="form-label">
-                Apellido del conductor
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="apellido_conductor"
-                required />
+              <label for="apellidos" class="form-label">Apellidos</label>
+              <input type="text" name="apellidos" class="form-control" required />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="sexo_conductor" class="form-label">
-                Sexo del conductor
-              </label>
-              <select
-                class="form-select"
-                name="sexo_conductor"
-                aria-label="Default select example">
+              <label for="numero_identificacion" class="form-label">Número de Identificación</label>
+              <input type="text" name="numero_identificacion" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+              <label for="cargo" class="form-label">Cargo</label>
+              <input type="text" name="cargo" class="form-control" required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="fecha_vencimiento_licencia" class="form-label">Fecha de Vencimiento de la Licencia</label>
+              <input type="date" name="fecha_vencimiento_licencia" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+              <label for="dias_restantes_licencia" class="form-label">Días Restantes</label>
+              <input type="text" name="dias_restantes_licencia" class="form-control" readonly />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="comparendos" class="form-label">Comparendos</label>
+              <select class="form-select" name="comparendos">
                 <option selected>Seleccione</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
+                <option value="con_comparendo">Con Comparendo</option>
+                <option value="sin_comparendo">Sin Comparendo</option>
               </select>
             </div>
             <div class="col-md-6">
-              <label for="telefono_conductor" class="form-label">
-                Telefono del conductor
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="telefono_conductor"
-                required />
+              <label for="acuerdo_pago" class="form-label">Acuerdo de Pago</label>
+              <select class="form-select" name="acuerdo_pago">
+                <option selected>Seleccione</option>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+              </select>
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="email_conductor" class="form-label">
-                Email del conductor
-              </label>
-              <input
-                class="form-control"
-                type="email"
-                name="email_conductor"
-                required />
+              <label for="fecha_vencimiento_curso" class="form-label">Fecha de Vencimiento del Curso de Manejo Defensivo</label>
+              <input type="date" name="fecha_vencimiento_curso" class="form-control" required />
             </div>
             <div class="col-md-6">
-              <label for="profesion_conductor" class="form-label">
-                Profesión del conductor
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="profesion_conductor"
-                required />
+              <label for="dias_restantes_curso" class="form-label">Días Restantes</label>
+              <input type="text" name="dias_restantes_curso" class="form-control" readonly />
             </div>
           </div>
 
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="salario_conductor" class="form-label">
-                Salario del conductor
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="salario_conductor"
-                id="salario_conductor"
-                required />
-            </div>
-          
-            <div class="col-md-6">
-              <label for="" class="form-label">
-                CARGAR IMAGEN DEL CONDUCTOR
-              </label>
+              <label for="foto_conductor" class="form-label">Cargar Imagen del Conductor</label>
               <div class="avatar-upload">
                 <div class="avatar-edit">
-                  <input
-                    type="file"
-                    name="foto_conductor"
-                    id="imageUpload"
-                    accept=".png, .jpg, .jpeg" />
+                  <input type="file" name="foto_conductor" id="imageUpload" accept=".png, .jpg, .jpeg" />
                   <label for="imageUpload"><i class="bi bi-pen"></i></label>
                 </div>
                 <div class="avatar-preview">
-                  <div class="avatar-preview">
-                    {% set url_avatar= url_for('static', filename
-                    ='assets/img/avatar.png') %}
-                    <div
-                      id="imagePreview"
-                      style="background-image: url('{{ url_avatar }}')"></div>
-                  </div>
+                  {% set url_avatar= url_for('static', filename ='assets/img/avatar.png') %}
+                  <div id="imagePreview" style="background-image: url('{{ url_avatar }}')"></div>
                 </div>
               </div>
             </div>
@@ -151,4 +119,4 @@
 </div>
 {% endblock %} {% block customJS %}
 <script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
-{% endblock %} 
+{% endblock %}

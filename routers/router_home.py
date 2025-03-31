@@ -39,7 +39,7 @@ def formconductor():
 @app.route('/lista-de-conductores', methods=['GET'])
 def lista_conductores():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/lista_conductores.html', conductores=sql_lista_conductoresBD())
+        return render_template(f'{PATH_URL}/lista-de-conductores.html', conductores=sql_lista_conductoresBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))

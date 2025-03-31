@@ -1,0 +1,72 @@
+{% extends 'public/base_cpanel.html' %}
+
+{% block title %} Lista de Conductores {% endblock %}
+
+{% block customCSS %}
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/file.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">Lista de Conductores</h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <!-- Tabla de conductores -->
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Número Identificación</th>
+            <th>Cargo</th>
+            <th>Fecha Vencimiento Licencia</th>
+            <th>Días Restantes Licencia</th>
+            <th>Comparendos</th>
+            <th>Acuerdo de Pago</th>
+            <th>Fecha Vencimiento Curso</th>
+            <th>Días Restantes Curso</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for conductor in conductores %}
+          <tr>
+            <td>{{ conductor.id_conductor }}</td>
+            <td>{{ conductor.nombres }}</td>
+            <td>{{ conductor.apellidos }}</td>
+            <td>{{ conductor.numero_identificacion }}</td>
+            <td>{{ conductor.cargo }}</td>
+            <td>{{ conductor.fecha_vencimiento_licencia }}</td>
+            <td>{{ conductor.dias_restantes_licencia }}</td>
+            <td>{{ conductor.comparendos }}</td>
+            <td>{{ conductor.acuerdo_pago }}</td>
+            <td>{{ conductor.fecha_vencimiento_curso }}</td>
+            <td>{{ conductor.dias_restantes_curso }}</td>
+            <td>
+              <a href="#" class="btn btn-info btn-sm">Detalles</a>
+              <a href="#" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar a este conductor?');">Eliminar</a>
+              <a href="#" class="btn btn-success btn-sm">Actualizar</a>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="12" class="text-center">No hay conductores registrados</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block customJS %}
+<script src="{{ url_for('static', filename='assets/customJS/file.js') }}"></script>
+{% endblock %}

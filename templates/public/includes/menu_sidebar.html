@@ -1,4 +1,4 @@
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-dark">
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-secondary">
   <div class="app-brand demo">
     <a href="{{ url_for('inicio') }}" class="app-brand-link">
       <span class="app-brand-logo demo">
@@ -43,6 +43,9 @@
         <div data-i18n="Tables">Registrar Nuevo Conductor</div>
       </a>
     </li>
+
+ 
+
     <li
       class="menu-item {% if request.path == '/mi-perfil' %} active {% endif %}">
       <a href="/mi-perfil" class="menu-link">

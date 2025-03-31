@@ -10,7 +10,7 @@ def connectionBD():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            passwd="root",
+            passwd="1234",
             database="app_empresa_bd",
             charset='utf8mb4',
             collation='utf8mb4_unicode_ci',
