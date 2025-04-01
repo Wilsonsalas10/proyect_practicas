@@ -36,13 +36,20 @@ def formconductor():
 
 
 
-@app.route('/lista-de-conductores', methods=['GET'])
+@app.route('/lista-conductores')
 def lista_conductores():
-    if 'conectado' in session:
-        return render_template(f'{PATH_URL}/lista-de-conductores.html', conductores=sql_lista_conductoresBD())
-    else:
-        flash('primero debes iniciar sesión.', 'error')
-        return redirect(url_for('inicio'))
+    try:
+        connection = get_db_connection()
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM tbl_conductores")
+            conductores = cursor.fetchall()
+    except Exception as e:
+        flash(f'Error al obtener la lista de conductores: {str(e)}', 'danger')
+        conductores = []
+    finally:
+        connection.close()
+    
+    return render_template('lista_conductores.html', conductores=conductores)
 
 
 @app.route("/detalles-conductor/", methods=['GET'])

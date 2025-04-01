@@ -9,13 +9,14 @@ CREATE TABLE IF NOT EXISTS tbl_conductores (
   id_conductor int NOT NULL AUTO_INCREMENT,
   nombre_conductor varchar(50) DEFAULT NULL,
   apellido_conductor varchar(50) DEFAULT NULL,
-  sexo_conductor int DEFAULT NULL,
-  telefono_conductor varchar(50) DEFAULT NULL,
-  email_conductor varchar(50) DEFAULT NULL,
-  profesion_conductor varchar(50) DEFAULT NULL,
-  foto_conductor mediumtext,
-  salario_conductor bigint DEFAULT NULL,
-  fecha_registro timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  numero_identificacion int DEFAULT NULL,
+  cargo varchar(50) DEFAULT NULL,
+  fecha_vencimiento_licencia timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  dias_restantes_licencia int DEFAULT NULL,
+  comparendos varchar(50) DEFAULT NULL,
+  acuerdo_pago varchar(50) DEFAULT NULL;
+  fecha_vencimiento_curso timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  dias_restantes_curso  int DEFAULT NULL,
   PRIMARY KEY (id_conductor)
 ) ;
 

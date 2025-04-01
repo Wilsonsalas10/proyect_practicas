@@ -17,17 +17,11 @@
 
   <div class="menu-inner-shadow"></div>
   <ul class="menu-inner py-5">
-    <li
-      class="menu-item {% if request.path == '/registrar-conductor' %} active {% endif %}">
-      <a href="{{ url_for('vehiculos.viewFormconductor') }}" class="menu-link">
-        <i class="menu-icon bi bi-person-bounding-box"></i>
-        <div data-i18n="Basic">Base de Datos Conductores</div>
-      </a>
-    </li>
+    
     <li class="menu-item {% if request.path == '/lista-de-conductores' %} active{% endif %}">
       <a href="/lista-de-conductores" class="menu-link">
         <i class="menu-icon bi bi-person-circle"></i>
-        <div data-i18n="Boxicons">Lista de Conductores</div>
+        <div data-i18n="Boxicons">Base datos Conductores</div>
       </a>
     </li>
     <li class="menu-item {% if request.path == '/descargar-informe-conductores' %} active {% endif %}">
